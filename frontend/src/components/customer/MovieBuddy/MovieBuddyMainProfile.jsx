@@ -46,7 +46,8 @@ const MovieBuddyMainProfile = () => {
 
   const getUserDataByEmail = async (email) => {
     try {
-      const response = await axios.post('http://localhost:3000/api/movie-buddies/email', { email });
+      const API_BASE = import.meta.env.VITE_API_BASE_URL;
+      const response = await axios.post(`${API_BASE}/api/movie-buddies/email`, { email });
       if (response.data.success && response.data.data.length > 0) {
         return response.data.data[0];
       }
@@ -73,7 +74,7 @@ const MovieBuddyMainProfile = () => {
         
         // Fetch user details from Auth/UserModel
         try {
-          const userResponse = await axios.get(`http://localhost:3000/api/auth/user`, {
+          const userResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/auth/user`, {
             params: { email: userEmail }
           });
           
@@ -202,7 +203,7 @@ const MovieBuddyMainProfile = () => {
       
       // Update user profile
       try {
-        await axios.put(`http://localhost:3000/api/users/update-profile`, {
+        await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/users/update-profile`, {
           email: editForm.email,
           name: editForm.name,
           phone: editForm.phone,
@@ -236,7 +237,7 @@ const MovieBuddyMainProfile = () => {
             movieTime: profile.movieTime
           };
           
-          await axios.put(`http://localhost:3000/api/movie-buddies/${profile._id}`, payload);
+          await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/movie-buddies/${profile._id}`, payload);
         } catch (movieBuddyUpdateError) {
           console.error('Error updating movie buddy profile:', movieBuddyUpdateError);
           throw new Error('Failed to update movie buddy information');
@@ -291,7 +292,7 @@ const MovieBuddyMainProfile = () => {
       setLoading(true);
       
       if (profile && profile._id) {
-        await axios.delete(`http://localhost:3000/api/movie-buddies/${profile._id}`);
+        await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/movie-buddies/${profile._id}`);
       }
       
       localStorage.removeItem('userEmail');

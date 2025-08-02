@@ -42,7 +42,7 @@ const MovieList = () => {
 
   const fetchMovies = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/movies");
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/movies`);
       const data = await response.json();
 
       if (data.success) {
@@ -69,7 +69,7 @@ const MovieList = () => {
   const handleDelete = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/movies/${deleteModal.movieId}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/movies/${deleteModal.movieId}`,
         {
           method: "DELETE",
         }
@@ -337,7 +337,7 @@ const MovieList = () => {
 
   const getImageUrl = (imagePath) => {
     const cleanPath = imagePath.startsWith("/") ? imagePath.slice(1) : imagePath;
-    return `http://localhost:3000/uploads/${cleanPath}`;
+    return `${import.meta.env.VITE_API_BASE_URL}/uploads/${cleanPath}`;
   };
 
   if (loading) {

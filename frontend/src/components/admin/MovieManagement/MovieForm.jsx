@@ -248,7 +248,7 @@ const MovieForm = () => {
 
   const fetchMovieData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/movies/${id}`);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/movies/${id}`);
       const data = await response.json();
       if (data.data) {
         const movie = data.data;
@@ -264,7 +264,7 @@ const MovieForm = () => {
           show_times: movie.show_times || [],
           genre: movie.genre || ''
         });
-        setImagePreview(movie.image_name ? `http://localhost:3000/uploads/${movie.image_name}` : null);
+      setImagePreview(movie.image_name ? `${import.meta.env.VITE_API_BASE_URL}/uploads/${movie.image_name}` : null);
       } else {
         throw new Error('Movie not found');
       }
@@ -308,8 +308,8 @@ const MovieForm = () => {
       }
 
       const url = isEditMode
-        ? `http://localhost:3000/api/movies/${id}`
-        : 'http://localhost:3000/api/movies';
+        ? `${import.meta.env.VITE_API_BASE_URL}/api/movies/${id}`
+        : `${import.meta.env.VITE_API_BASE_URL}/api/movies`;
       const method = isEditMode ? 'PUT' : 'POST';
 
       const response = await fetch(url, {

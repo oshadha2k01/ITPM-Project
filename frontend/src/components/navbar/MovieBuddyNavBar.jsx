@@ -28,7 +28,8 @@ const MovieBuddyNavBar = () => {
 
       try {
         // Fetch user profile from API
-        const response = await fetch(`http://localhost:3000/api/users/profile?email=${email}`);
+        const API_BASE = import.meta.env.VITE_API_BASE_URL;
+        const response = await fetch(`${API_BASE}/api/users/profile?email=${email}`);
         const data = await response.json();
         if (data && data.name) {
           const firstName = data.name.split(' ')[0];

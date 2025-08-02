@@ -70,7 +70,7 @@ const BookingDetails = () => {
 
   const fetchMovieData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/movies/${booking.movie_id}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/movies/${booking.movie_id}`);
       if (response.data && response.data.data) {
         const movieData = response.data.data;
         setMovieData(movieData);
@@ -95,7 +95,7 @@ const BookingDetails = () => {
   const fetchBookedSeats = async () => {
     if (editFormData.movieDate && editFormData.movieTime) {
       try {
-        const response = await axios.get(`http://localhost:3000/api/bookings/booked-seats`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/bookings/booked-seats`, {
           params: {
             movieId: booking.movie_id,
             date: editFormData.movieDate,
@@ -113,11 +113,11 @@ const BookingDetails = () => {
 
   const fetchBookingDetails = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/bookings/${bookingId}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/bookings/${bookingId}`);
       setBooking(response.data);
       setEditFormData(response.data);
       if (response.data.movie_id) {
-        const movieResponse = await axios.get(`http://localhost:3000/api/movies/${response.data.movie_id}`);
+        const movieResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/movies/${response.data.movie_id}`);
         if (movieResponse.data && movieResponse.data.data) {
           const movieData = movieResponse.data.data;
           setMovieData(movieData);
@@ -146,7 +146,7 @@ const BookingDetails = () => {
         toast.error('Please select at least one seat');
         return;
       }
-      await axios.put(`http://localhost:3000/api/bookings/${bookingId}`, editFormData);
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/bookings/${bookingId}`, editFormData);
       toast.success('Booking updated successfully');
       setEditMode(false);
       fetchBookingDetails();
@@ -158,7 +158,7 @@ const BookingDetails = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3000/api/bookings/${bookingId}`);
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/bookings/${bookingId}`);
       toast.success('Booking deleted successfully');
       navigate('/now-showing');
     } catch (error) {

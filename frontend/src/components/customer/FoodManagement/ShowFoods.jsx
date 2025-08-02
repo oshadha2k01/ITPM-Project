@@ -26,7 +26,8 @@ const ShowFoods = () => {
   const fetchFoods = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:3000/api/foods');
+      const API_BASE = import.meta.env.VITE_API_BASE_URL;
+      const response = await fetch(`${API_BASE}/api/foods`);
       if (!response.ok) {
         throw new Error('Failed to fetch foods');
       }

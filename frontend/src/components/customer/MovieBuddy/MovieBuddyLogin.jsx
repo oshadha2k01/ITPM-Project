@@ -90,7 +90,7 @@ const MovieBuddyLogin = () => {
       console.log('Attempting login with:', { email: formData.email });
       
       // Make API call to authenticate with the correct endpoint
-      const response = await axios.post('http://localhost:3000/api/movie-buddies/login', {
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/movie-buddies/login`, {
         email: formData.email,
         password: formData.password
       });
@@ -122,7 +122,7 @@ const MovieBuddyLogin = () => {
           
           try {
             // Auto-update movie details for existing user
-            const updateResponse = await axios.put('http://localhost:3000/api/movie-buddies/update-movie-details', {
+            const updateResponse = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/movie-buddies/update-movie-details`, {
               email: userData.email,
               movieName: bookingDetails.movieName,
               movieDate: bookingDetails.movieDate,

@@ -161,8 +161,8 @@ const Payment = () => {
         paymentMethod: 'cash',
         status: 'pending'
       };
-
-      const response = await axios.post('http://localhost:3000/api/orders', payload);
+      const API_BASE = import.meta.env.VITE_API_BASE_URL;
+      const response = await axios.post(`${API_BASE}/api/orders`, payload);
       
       if (response.status === 201) {
         toast.success('Order placed successfully! Please pay at counter.');
@@ -252,7 +252,8 @@ const Payment = () => {
         }
       };
 
-      const response = await axios.post('http://localhost:3000/api/orders', payload);
+      const API_BASE = import.meta.env.VITE_API_BASE_URL;
+      const response = await axios.post(`${API_BASE}/api/orders`, payload);
 
       if (response.status === 201) {
         // Show success notification with more details

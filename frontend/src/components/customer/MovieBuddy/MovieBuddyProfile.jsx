@@ -24,13 +24,14 @@ const MovieBuddyProfile = () => {
       try {
         setLoading(true);
         // Fetch user profile from users collection
-        const userResponse = await axios.get(`http://localhost:3000/api/users/profile?email=${email}`);
+        const API_BASE = import.meta.env.VITE_API_BASE_URL;
+        const userResponse = await axios.get(`${API_BASE}/api/users/profile?email=${email}`);
         if (!userResponse.data || !userResponse.data.name) {
           throw new Error('User profile not found');
         }
 
         // Fetch movie buddy data for the logged-in user
-        const buddyResponse = await axios.get(`http://localhost:3000/api/movie-buddies/profile?email=${email}`);
+        const buddyResponse = await axios.get(`${API_BASE}/api/movie-buddies/profile?email=${email}`);
         
         setUserData({
           ...userResponse.data,

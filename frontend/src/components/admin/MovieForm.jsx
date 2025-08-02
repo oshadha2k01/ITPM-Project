@@ -35,7 +35,7 @@ const MovieForm = () => {
         cast: formData.cast.split(',').map(actor => actor.trim())
       };
 
-      await axios.post('http://localhost:5000/api/movies', movieData);
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/movies`, movieData);
       navigate('/admin/movies');
     } catch (error) {
       console.error('Error adding movie:', error);

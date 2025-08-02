@@ -83,7 +83,7 @@ const MovieBuddyList = () => {
       // Get user email from localStorage (optional - can be null/empty)
       const userEmail = localStorage.getItem('userEmail') || '';
       
-      const response = await axios.get('http://localhost:3000/api/movie-buddies/all', {
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/movie-buddies/all`, {
         headers: {
           'user-email': userEmail
         }

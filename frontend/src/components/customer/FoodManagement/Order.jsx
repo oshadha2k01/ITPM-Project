@@ -24,7 +24,7 @@ const Order = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/orders');
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/orders`);
       console.log('API Response:', response.data.data); // Debug log
       const data = Array.isArray(response.data.data) ? response.data.data : [];
       setOrders(data);
@@ -38,7 +38,7 @@ const Order = () => {
 
   const handleStatusUpdate = async (orderId, newStatus) => {
     try {
-      await axios.patch(`http://localhost:3000/api/orders/${orderId}`, {
+      await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/api/orders/${orderId}`, {
         status: newStatus
       });
       toast.success('Order status updated successfully');
@@ -52,7 +52,7 @@ const Order = () => {
   const handleDelete = async (orderId) => {
     if (window.confirm('Are you sure you want to delete this order?')) {
       try {
-        await axios.delete(`http://localhost:3000/api/orders/${orderId}`);
+        await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/orders/${orderId}`);
         toast.success('Order deleted successfully');
         fetchOrders();
       } catch (error) {

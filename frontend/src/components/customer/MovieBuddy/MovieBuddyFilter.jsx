@@ -93,7 +93,7 @@ const MovieBuddyFilter = ({ isOpen, onClose, onFilterResults, userMovieDetails }
       console.log('User movie details:', userMovieDetails);
       
       // First, get all movie buddies for the same movie
-      const response = await axios.get('http://localhost:3000/api/movie-buddies/buddies', {
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/movie-buddies/buddies`, {
         params: {
           movieName: userMovieDetails.movieName,
           movieDate: userMovieDetails.movieDate,

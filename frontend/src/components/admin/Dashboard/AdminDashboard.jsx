@@ -55,11 +55,11 @@ const AdminDashboard = () => {
     const fetchStats = async () => {
       try {
         // Fetch bookings
-        const bookingsResponse = await axios.get('http://localhost:3000/api/bookings');
+        const bookingsResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/bookings`);
         const bookings = bookingsResponse.data;
 
         // Fetch movies
-        const moviesResponse = await fetch('http://localhost:3000/api/movies');
+        const moviesResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/movies`);
         const moviesData = await moviesResponse.json();
         const movies = moviesData.success ? moviesData.data : [];
 

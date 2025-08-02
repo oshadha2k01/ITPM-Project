@@ -160,7 +160,7 @@ const MovieBuddyForm = () => {
       console.log('Submitting combined data:', combinedData);
 
       // Save to database using MovieBuddy endpoint (direct creation without User model)
-      const response = await axios.post('http://localhost:3000/api/movie-buddies/create-direct', combinedData);
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/movie-buddies/create-direct`, combinedData);
       
       // Show success message
       toast.success("Registration completed successfully!", {

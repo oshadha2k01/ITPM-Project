@@ -43,7 +43,7 @@ const BookingList = () => {
 
   const fetchBookings = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/bookings');
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/bookings`);
       setBookings(response.data);
     } catch (error) {
       console.error('Error fetching bookings:', error);
@@ -83,7 +83,7 @@ const BookingList = () => {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3000/api/bookings/${bookingToDelete}`);
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/bookings/${bookingToDelete}`);
       toast.success('Booking deleted successfully');
       fetchBookings();
       setDeleteModalOpen(false);
@@ -95,7 +95,7 @@ const BookingList = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:3000/api/bookings/${selectedBooking._id}`, editFormData);
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/bookings/${selectedBooking._id}`, editFormData);
       toast.success('Booking updated successfully');
       fetchBookings();
       setEditModalOpen(false);

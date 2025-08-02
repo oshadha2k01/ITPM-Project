@@ -50,7 +50,7 @@ const FoodList = () => {
 
   const fetchFoods = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/foods');
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/foods`);
       setFoods(response.data.data);
     } catch (error) {
       console.error('Error fetching foods:', error);
@@ -88,7 +88,7 @@ const FoodList = () => {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3000/api/foods/${foodToDelete}`);
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/foods/${foodToDelete}`);
       toast.success('Food item deleted successfully');
       fetchFoods();
       setDeleteModalOpen(false);
@@ -100,7 +100,7 @@ const FoodList = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:3000/api/foods/${selectedFood._id}`, editFormData);
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/foods/${selectedFood._id}`, editFormData);
       toast.success('Food item updated successfully');
       fetchFoods();
       setEditModalOpen(false);

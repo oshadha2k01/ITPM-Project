@@ -167,7 +167,7 @@ const AddFood = () => {
         formDataToSend.append(key, formData[key]);
       });
 
-      const response = await fetch("http://localhost:3000/api/foods", {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/foods`, {
         method: 'POST',
         body: JSON.stringify(formData),
         headers: {

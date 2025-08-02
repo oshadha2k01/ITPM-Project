@@ -13,7 +13,8 @@ const GetFood=()=> {
     useEffect(() => {
         async function fetchData() {
           try {
-            const response = await fetch('http://localhost:5000/api/foods');
+            const API_BASE = import.meta.env.VITE_API_BASE_URL;
+            const response = await fetch(`${API_BASE}/api/foods`);
             const data = await response.json();
             setFood(data);
           } catch (error) {

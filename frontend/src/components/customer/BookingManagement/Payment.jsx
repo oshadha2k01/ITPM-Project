@@ -94,7 +94,7 @@ const Payment = () => {
     yPos += 10;
     try {
       const QRCode = await loadQRCodeLibrary();
-      const qrCodeUrl = `http://localhost:3000/booking-details/${booking._id}`;
+      const qrCodeUrl = `${import.meta.env.VITE_API_BASE_URL}/booking-details/${booking._id}`;
       const qrCodeDataUrl = await QRCode.toDataURL(qrCodeUrl, {
         width: 80,
         margin: 1

@@ -41,7 +41,7 @@ const BookingForm = () => {
             show_times: location.state.movieData.show_times || []
           };
         } else {
-          const response = await axios.get(`http://localhost:3000/api/movies/${id}`);
+          const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/movies/${id}`);
           movie = {
             movie_name: response.data.movie_name,
             show_times: response.data.show_times || []
@@ -99,7 +99,7 @@ const BookingForm = () => {
     const fetchBookedSeats = async () => {
       if (formData.movieDate && formData.movieTime) {
         try {
-          const response = await axios.get(`http://localhost:3000/api/bookings/booked-seats`, {
+          const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/bookings/booked-seats`, {
             params: { movieId: id, date: formData.movieDate, time: formData.movieTime }
           });
           setBookedSeats(response.data.bookedSeats || []);
@@ -216,7 +216,7 @@ const BookingForm = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:3000/api/bookings', {
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/bookings`, {
         movieName: movieData.movie_name,
         movieDate: formData.movieDate,
         movieTime: formData.movieTime,

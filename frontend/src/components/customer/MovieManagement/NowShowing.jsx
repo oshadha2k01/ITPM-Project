@@ -30,7 +30,7 @@
 //   const fetchMovies = async () => {
 //     try {
 //       setLoading(true);
-//       const response = await fetch('http://localhost:3000/api/movies');
+//       const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/movies`);
 //       if (!response.ok) {
 //         throw new Error('Failed to fetch movies');
 //       }
@@ -183,7 +183,7 @@
 //               >
 //                 <div className="relative">
 //                   <img
-//                     src={`http://localhost:3000/uploads/${movie.image_name}`}
+//                     src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${movie.image_name}`}
 //                     alt={movie.movie_name}
 //                     className="w-full h-[280px] object-cover"
 //                   />
@@ -291,8 +291,9 @@ const NowShowing = () => {
     try {
       setLoading(true);
       // Optional: Use query parameter if backend supports it
-      const response = await fetch('http://localhost:3000/api/movies?status=Now Showing');
-      // const response = await fetch('http://localhost:3000/api/movies'); // Original fetch
+      const API_BASE = import.meta.env.VITE_API_BASE_URL;
+      const response = await fetch(`${API_BASE}/api/movies?status=Now Showing`);
+      // const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/movies`); // Original fetch
       if (!response.ok) {
         throw new Error('Failed to fetch movies');
       }
@@ -416,7 +417,7 @@ const NowShowing = () => {
               <div key={movie._id} className="bg-electric-purple/10 rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
                 <div className="relative">
                   <img
-                    src={`http://localhost:3000/uploads/${movie.image_name}`}
+                    src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${movie.image_name}`}
                     alt={movie.movie_name}
                     className="w-full h-[280px] object-cover"
                   />

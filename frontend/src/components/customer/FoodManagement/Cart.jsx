@@ -109,7 +109,7 @@ const Cart = () => {
                   className="bg-electric-purple/10 rounded-lg p-4 flex items-center gap-4"
                 >
                   <img
-                    src={`http://localhost:3000/uploads/${item.imageUrl}`}
+                    src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${item.imageUrl}`}
                     alt={item.name}
                     className="w-24 h-24 object-cover rounded-lg"
                   />

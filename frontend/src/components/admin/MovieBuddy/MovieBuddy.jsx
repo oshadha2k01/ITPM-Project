@@ -49,7 +49,7 @@ const MovieBuddy = () => {
   const fetchMovieBuddyGroups = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:3000/api/movie-buddies/all');
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/movie-buddies/all`);
       
       if (response.data.success) {
         // Process the data to calculate group/single bookings and total seats
@@ -89,7 +89,7 @@ const MovieBuddy = () => {
 
   const fetchStats = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/movie-buddies/all');
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/movie-buddies/all`);
       if (response.data.success) {
         const groups = response.data.data;
         
@@ -139,7 +139,7 @@ const MovieBuddy = () => {
 
   const confirmDelete = async () => {
     try {
-      const response = await axios.delete(`http://localhost:3000/api/movie-buddies/${groupToDelete.movieName}/${groupToDelete.movieDate}/${groupToDelete.movieTime}`);
+      const response = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/movie-buddies/${groupToDelete.movieName}/${groupToDelete.movieDate}/${groupToDelete.movieTime}`);
       
       if (response.data.success) {
         toast.success('Movie buddy group deleted successfully');
