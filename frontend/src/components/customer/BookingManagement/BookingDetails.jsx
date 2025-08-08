@@ -311,7 +311,7 @@ const BookingDetails = () => {
                   />
                 </div>
                 <div className="text-silver">
-                  Total Amount: <span className="font-bold text-amber">₹{totalAmount.toLocaleString('en-IN')}</span>
+                  Total Amount: <span className="font-bold text-amber">Rs{totalAmount.toLocaleString('en-IN')}</span>
                 </div>
                 <div className="flex justify-end space-x-4 mt-6">
                   <button
@@ -367,7 +367,7 @@ const BookingDetails = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-amber mb-2">Total Amount</h3>
-                    <p className="text-silver">₹{totalAmount.toLocaleString('en-IN')}</p>
+                    <p className="text-silver">Rs{totalAmount.toLocaleString('en-IN')}</p>
                   </div>
                 </div>
 

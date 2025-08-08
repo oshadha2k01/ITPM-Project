@@ -182,7 +182,7 @@ const MovieBuddyLogin = () => {
           
           // Navigate to movie-buddy-form with all available data
           setTimeout(() => {
-            navigate('/movie-buddy-form', { 
+            navigate('/movie-buddies', { 
               state: enhancedBookingDetails
             });
           }, 1000);

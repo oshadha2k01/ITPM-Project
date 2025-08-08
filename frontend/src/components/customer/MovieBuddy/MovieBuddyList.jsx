@@ -409,20 +409,20 @@ const MovieBuddyList = () => {
                   </div>
 
                   <div className="flex flex-col space-y-2">
-                    <button
+                    {/* <button
                       onClick={() => handleViewDetails(group.buddies[0], group)}
                       className="w-full bg-electric-purple/20 text-electric-purple hover:bg-electric-purple/30 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
                     >
                       <FontAwesomeIcon icon={faChartBar} />
                       <span>View Details</span>
-                    </button>
-                    <button
+                    </button> */}
+                    {/* <button
                       onClick={() => handleWhatsAppChat(group.buddies[0])}
                       className="w-full bg-amber/20 text-amber hover:bg-amber/30 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
                     >
                       <FontAwesomeIcon icon={faUserFriends} />
                       <span>Chat on WhatsApp</span>
-                    </button>
+                    </button> */}
                   </div>
                 </motion.div>
               ))}

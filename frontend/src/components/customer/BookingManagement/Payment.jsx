@@ -75,7 +75,7 @@ const Payment = () => {
       { label: 'Time:', value: booking.movieTime },
       { label: 'Seats:', value: Array.isArray(booking.seatNumbers) ? booking.seatNumbers.join(', ') : booking.seatNumbers },
       { label: 'Customer Name:', value: booking.name },
-      { label: 'Total Amount:', value: `₹${totalAmount.toLocaleString('en-IN')}` }
+      { label: 'Total Amount:', value: `Rs${totalAmount.toLocaleString('en-IN')}` }
     ];
 
     let yPos = 60;
@@ -199,7 +199,7 @@ const Payment = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-amber mb-2">Total Amount</h3>
-                  <p className="text-silver font-bold">₹{totalAmount.toLocaleString('en-IN')}</p>
+                  <p className="text-silver font-bold">Rs{totalAmount.toLocaleString('en-IN')}</p>
                 </div>
               </div>
             </div>

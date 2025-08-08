@@ -137,7 +137,7 @@ const SeatSelection = ({ isOpen, onClose, onSelect, selectedSeats = [], bookedSe
           </p>
           <p className="text-silver">
             Total Amount: <span className="font-bold text-amber">
-              ₹{totalAmount.toLocaleString('en-IN')}
+              Rs{totalAmount.toLocaleString('en-IN')}
             </span>
           </p>
         </div>

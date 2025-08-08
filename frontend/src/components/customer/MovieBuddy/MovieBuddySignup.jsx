@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faEnvelope, faLock, faPhone, faExclamationCircle, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faEnvelope, faLock, faPhone, faExclamationCircle, faSpinner, faFilm, faCalendarAlt, faClock, faCouch } from '@fortawesome/free-solid-svg-icons';
 import { Toaster, toast } from 'react-hot-toast';
 import axios from 'axios';
 
@@ -19,11 +19,11 @@ const MovieBuddySignup = () => {
   console.log("Booking details received:", bookingDetails);
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    name: bookingDetails.name || '',
+    email: bookingDetails.email || '',
     password: '',
     confirmPassword: '',
-    phone: '',
+    phone: bookingDetails.phoneNumber || bookingDetails.phone || '',
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -37,7 +37,15 @@ const MovieBuddySignup = () => {
       localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
     }
     
-    // Don't auto-fill form data anymore - let users enter their own information
+    // Auto-fill form data from booking details
+    if (bookingDetails) {
+      setFormData(prev => ({
+        ...prev,
+        name: bookingDetails.name || prev.name,
+        email: bookingDetails.email || prev.email,
+        phone: bookingDetails.phoneNumber || bookingDetails.phone || prev.phone
+      }));
+    }
     
   }, [bookingDetails]);
 
@@ -209,6 +217,44 @@ const MovieBuddySignup = () => {
       >
         <div className="bg-electric-purple/10 rounded-xl p-10 border border-silver/10 shadow-lg">
           <h1 className="text-3xl font-bold text-amber mb-8 text-center">Register</h1>
+
+          {/* Display booking details if available */}
+          {bookingDetails && bookingDetails.movieTitle && (
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-6 p-4 bg-electric-purple/20 rounded-lg border border-amber/30"
+            >
+              <h2 className="text-amber text-lg font-medium mb-2">Your Booking Details</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                {bookingDetails.movieTitle && (
+                  <div className="flex items-center">
+                    <FontAwesomeIcon icon={faFilm} className="text-amber mr-2" />
+                    <span>Movie: {bookingDetails.movieTitle}</span>
+                  </div>
+                )}
+                {bookingDetails.date && (
+                  <div className="flex items-center">
+                    <FontAwesomeIcon icon={faCalendarAlt} className="text-amber mr-2" />
+                    <span>Date: {bookingDetails.date}</span>
+                  </div>
+                )}
+                {bookingDetails.time && (
+                  <div className="flex items-center">
+                    <FontAwesomeIcon icon={faClock} className="text-amber mr-2" />
+                    <span>Time: {bookingDetails.time}</span>
+                  </div>
+                )}
+                {bookingDetails.seats && (
+                  <div className="flex items-center">
+                    <FontAwesomeIcon icon={faCouch} className="text-amber mr-2" />
+                    <span>Seats: {Array.isArray(bookingDetails.seats) ? bookingDetails.seats.join(', ') : bookingDetails.seats}</span>
+                  </div>
+                )}
+              </div>
+              <p className="mt-3 text-silver/80 text-sm italic">Register as a Movie Buddy to find companions for this show!</p>
+            </motion.div>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
