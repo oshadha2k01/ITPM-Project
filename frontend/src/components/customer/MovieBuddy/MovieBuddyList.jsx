@@ -24,7 +24,8 @@ import {
   faUserCircle,
   faUserFriends,
   faTimes,
-  faIdCard
+  faIdCard,
+  faHome
 } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import CustomerNavBar from '../../navbar/MovieBuddyNavBar';
@@ -233,6 +234,17 @@ const MovieBuddyList = () => {
           {/* Movie Name Navigation Bar */}
           <div className="bg-electric-purple/10 rounded-xl p-4 mb-6 border border-silver/10 overflow-x-auto">
             <div className="flex items-center space-x-4 min-w-max">
+              <button
+                onClick={() => setFilterOptions(prev => ({ ...prev, movieName: '' }))}
+                className={`px-4 py-2 rounded-lg transition-colors duration-200 flex items-center space-x-2 ${
+                  !filterOptions.movieName
+                    ? 'bg-amber text-deep-space'
+                    : 'bg-deep-space text-silver hover:bg-amber/20 hover:text-amber'
+                }`}
+              >
+                <FontAwesomeIcon icon={faHome} />
+                <span>All Movies</span>
+              </button>
               <div className="flex items-center space-x-3">
                 <FontAwesomeIcon icon={faTicketAlt} className="text-amber text-xl" />
                 <span className="text-amber font-semibold">Movies:</span>

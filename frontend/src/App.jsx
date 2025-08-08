@@ -84,10 +84,6 @@ function App() {
           <Route path='/order' element={<Order/>}/>
           <Route path='/paymentfood' element={<PaymentFood/>}/>
           <Route path='/order-confirm' element={<OrderConfirm/>}/>
-
-          
-
-
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />}/>
           
